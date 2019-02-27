@@ -12,10 +12,9 @@ mkdir -p priv/static
 
 mix deps.get
 mix compile
-(cd assets && npm install)
+(cd assets && npm install
+(cd assets && npm rebuild node-sass)
 (cd assets &&  webpack --mode production)
-(cd assets && npm install --save bootstrap jquery popper.js)
-(cd assets && npm install --save-dev node-sass sass-loader)
 mix phx.digest
 
 echo "Creating Release."
