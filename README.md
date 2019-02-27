@@ -1,20 +1,17 @@
 # TaskTracker
 
-To start your Phoenix server:
+## Design Choices
 
-  * Install dependencies with `mix deps.get`
-  * Create and migrate your database with `mix ecto.setup`
-  * Install Node.js dependencies with `cd assets && npm install`
-  * Start Phoenix endpoint with `mix phx.server`
+### Users:
+- **email:** This is the field that the users need to log in.
+- **name:** I felt like having a name would be a nice personal touch in this very bare-bones app.
 
-Now you can visit [`localhost:4000`](http://localhost:4000) from your browser.
+### Tasks:
+- **name:** Users need to be able to enter a name for their task.
+- **desc:** Users need to be able to enter a description for their task.
 
-Ready to run in production? Please [check our deployment guides](https://hexdocs.pm/phoenix/deployment.html).
+### Times:
+- **minutes:** Users need to be able to describe how much time they've put into their tasks.
 
-## Learn more
-
-  * Official website: http://www.phoenixframework.org/
-  * Guides: https://hexdocs.pm/phoenix/overview.html
-  * Docs: https://hexdocs.pm/phoenix
-  * Mailing list: http://groups.google.com/group/phoenix-talk
-  * Source: https://github.com/phoenixframework/phoenix
+### Relationships Between Tables:
+I decided to make a many-to-one relationship between the tasks and the users after a discussion with the professor. Initially, I wanted to make a many-to-many relationship between the two entities. However, the professor said that I only needed to implement the many-to-one relationship, but he said that if I wanted to, I could implement a many-to-many relationship. After running into several complications, I decided to implement the much easier many-to-one relationship.
