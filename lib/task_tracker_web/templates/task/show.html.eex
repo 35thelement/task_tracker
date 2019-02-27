@@ -28,12 +28,13 @@
   <%= hidden_input f, :task_id %>
 
   <div class="form-group">
+    <%= label f, :minutes %>
     <%= number_input f, :minutes, class: "form-control" %>
     <%= error_tag f, :minutes %>
   </div>
 
   <div>
-    <%= submit "Assign Task", class: "btn btn-primary" %>
+    <%= submit "Assign Task to Me", class: "btn btn-primary" %>
   </div>
   <% end %>
 </div>

@@ -16,9 +16,9 @@
       <td><%= time.minutes %></td>
 
       <td>
-        <%= link "Show", to: Routes.time_path(@conn, :show, time) %>
-        <%= link "Edit", to: Routes.time_path(@conn, :edit, time) %>
-        <%= link "Delete", to: Routes.time_path(@conn, :delete, time), method: :delete, data: [confirm: "Are you sure?"] %>
+        <%= link "Show", to: Routes.time_path(@conn, :show, time), class: "btn btn-secondary" %>
+        <%= link "Edit", to: Routes.time_path(@conn, :edit, time), class: "btn btn-secondary" %>
+        <%= link "Delete", to: Routes.time_path(@conn, :delete, time), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger" %>
       </td>
     </tr>
 <% end %>

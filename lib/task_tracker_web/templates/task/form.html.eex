@@ -6,15 +6,15 @@
   <% end %>
 
   <%= label f, :name %>
-  <%= text_input f, :name %>
+  <%= text_input f, :name, class: "form-control" %>
   <%= error_tag f, :name %>
 
   <%= label f, :desc %>
-  <%= textarea f, :desc %>
+  <%= textarea f, :desc, class: "form-control" %>
   <%= error_tag f, :desc %>
 
   <%= label f, :done %>
-  <%= checkbox f, :done %>
+  <%= checkbox f, :done, class: "form-control" %>
   <%= error_tag f, :done %>
 
   <div>

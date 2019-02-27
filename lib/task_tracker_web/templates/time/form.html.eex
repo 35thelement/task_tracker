@@ -6,7 +6,7 @@
   <% end %>
 
   <%= label f, :minutes %>
-  <%= number_input f, :minutes %>
+  <%= number_input f, :minutes, class: "form-control" %>
   <%= error_tag f, :minutes %>
 
   <div>
