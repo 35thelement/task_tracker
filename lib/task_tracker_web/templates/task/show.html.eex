@@ -19,5 +19,26 @@
 
 </ul>
 
+<%= if @current_user do %>
+<div>
+  <%= form_for @time_cset, Routes.time_path(@conn, :create),
+  [class: "form-inline"], fn f -> %>
+
+  <%= hidden_input f, :user_id %>
+  <%= hidden_input f, :task_id %>
+
+  <div class="form-group">
+    <%= number_input f, :minutes, class: "form-control" %>
+    <%= error_tag f, :minutes %>
+  </div>
+
+  <div>
+    <%= submit "Assign Task", class: "btn btn-primary" %>
+  </div>
+  <% end %>
+</div>
+<% end %>
+
+
 <span><%= link "Edit", to: Routes.task_path(@conn, :edit, @task) %></span>
 <span><%= link "Back", to: Routes.task_path(@conn, :index) %></span>

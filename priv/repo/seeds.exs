@@ -13,7 +13,9 @@
 alias TaskTracker.Repo
 alias TaskTracker.Users.User
 alias TaskTracker.Tasks.Task
+alias TaskTracker.Times.Time
 
 Repo.insert!(%User{email: "m.sakurai@nintendo.net", name: "Masahiro Sakurai"})
-Repo.insert!(%User{email: "buyskyrimpls@bethesda.org", name: "Todd Howard"})
-Repo.insert!(%Task{name: "Create Skyrim for Toasters", desc: "Make a version of Skyrim that is playable on a toaster oven.", done: false})
+user = Repo.insert!(%User{email: "buyskyrimpls@bethesda.org", name: "Todd Howard"})
+task = Repo.insert!(%Task{name: "Create Skyrim for Toasters", desc: "Make a version of Skyrim that is playable on a toaster oven.", done: false})
+Repo.insert!(%Time{user: user, task: task, minutes: 30})

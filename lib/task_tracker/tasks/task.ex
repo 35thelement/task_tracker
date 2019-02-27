@@ -7,6 +7,7 @@ defmodule TaskTracker.Tasks.Task do
     field :desc, :string
     field :done, :boolean, default: false
     field :name, :string
+    has_many :times, TaskTracker.Times.Time
 
     timestamps()
   end

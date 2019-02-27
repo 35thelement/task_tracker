@@ -3,6 +3,7 @@ defmodule TaskTrackerWeb.TaskController do
 
   alias TaskTracker.Tasks
   alias TaskTracker.Tasks.Task
+  alias TaskTracker.Times
 
   def index(conn, _params) do
     tasks = Tasks.list_tasks()
@@ -28,7 +29,10 @@ defmodule TaskTrackerWeb.TaskController do
 
   def show(conn, %{"id" => id}) do
     task = Tasks.get_task!(id)
-    render(conn, "show.html", task: task)
+    user_id = get_session(conn, :user_id)
+    time_cset = Times.change_time(%Times.Time{
+      user_id: user_id, task_id: task.id, minutes: 0})
+    render(conn, "show.html", task: task, time_cset: time_cset)
   end
 
   def edit(conn, %{"id" => id}) do

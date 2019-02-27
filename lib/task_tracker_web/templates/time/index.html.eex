@@ -1,0 +1,28 @@
+<h1>Listing Times</h1>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Minutes</th>
+
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+<%= for time <- @times do %>
+    <tr>
+      <td><%= time.task.name %></td>
+      <td><%= time.minutes %></td>
+
+      <td>
+        <%= link "Show", to: Routes.time_path(@conn, :show, time) %>
+        <%= link "Edit", to: Routes.time_path(@conn, :edit, time) %>
+        <%= link "Delete", to: Routes.time_path(@conn, :delete, time), method: :delete, data: [confirm: "Are you sure?"] %>
+      </td>
+    </tr>
+<% end %>
+  </tbody>
+</table>
+
+<span><%= link "New Time", to: Routes.time_path(@conn, :new) %></span>
