@@ -24,7 +24,12 @@
   <%= form_for @time_cset, Routes.time_path(@conn, :create),
   [class: "form-inline"], fn f -> %>
 
-  <%= hidden_input f, :user_id %>
+  <div class="form-group">
+    <%= label f, :user_id %>
+    <%= number_input f, :user_id, class: "form-control" %>
+    <%= error_tag f, :user_id %>
+  </div>
+
   <%= hidden_input f, :task_id %>
 
   <div class="form-group">
