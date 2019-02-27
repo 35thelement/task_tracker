@@ -1,6 +1,6 @@
 server {
     listen 80;
-    listen [::] 80;
+    listen [::]:80;
 
     server_name tasks1.element35.org;
     location / {
