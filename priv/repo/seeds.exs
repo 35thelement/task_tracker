@@ -18,5 +18,5 @@ alias TaskTracker.Times.Time
 masahiro = Repo.insert!(%User{email: "m.sakurai@nintendo.net", name: "Masahiro Sakurai"})
 todd = Repo.insert!(%User{email: "buyskyrimpls@bethesda.org", name: "Todd Howard"})
 task = Repo.insert!(%Task{user: todd, name: "Create Skyrim for Toasters", desc: "Make a version of Skyrim that is playable on a toaster oven.", done: false})
-Repo.insert!(%Time{start: NaiveDateTime.truncate(NaiveDateTime.utc_now(), :second), user: todd, task: task})
-shigeru = Repo.insert!(%User{email: "s.miyamoto@nintendo.net", name: "Shigeru Miyamoto", boss: masahiro})
+Repo.insert!(%Time{start: NaiveDateTime.truncate(NaiveDateTime.utc_now(), :second), stop: NaiveDateTime.truncate(NaiveDateTime.utc_now(), :second), user: todd, task: task})
+_shigeru = Repo.insert!(%User{email: "s.miyamoto@nintendo.net", name: "Shigeru Miyamoto", boss: masahiro})
