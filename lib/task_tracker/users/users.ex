@@ -21,6 +21,11 @@ defmodule TaskTracker.Users do
     Repo.all(User)
   end
 
+  def list_user_ids do
+    Repo.all from u in User,
+    select: u.id
+  end
+
   @doc """
   Gets a single user.
 
@@ -37,7 +42,11 @@ defmodule TaskTracker.Users do
   """
   def get_user!(id), do: Repo.get!(User, id)
 
-  def get_user(id), do: Repo.get(User, id)
+  def get_user(id) do
+    Repo.one from u in User,
+    where: u.id == ^id,
+    preload: [times: :task]
+  end
 
   def get_user_by_email(email) do
     Repo.get_by(User, email: email)

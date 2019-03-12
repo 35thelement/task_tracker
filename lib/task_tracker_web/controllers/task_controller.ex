@@ -3,6 +3,8 @@ defmodule TaskTrackerWeb.TaskController do
 
   alias TaskTracker.Tasks
   alias TaskTracker.Tasks.Task
+  alias TaskTracker.Times
+  alias TaskTracker.Users
 
   def index(conn, _params) do
     tasks = Tasks.list_tasks()
@@ -11,7 +13,8 @@ defmodule TaskTrackerWeb.TaskController do
 
   def new(conn, _params) do
     changeset = Tasks.change_task(%Task{})
-    render(conn, "new.html", changeset: changeset)
+    user_ids = Users.list_user_ids()
+    render(conn, "new.html", changeset: changeset, user_ids: user_ids)
   end
 
   def create(conn, %{"task" => task_params}) do
@@ -28,13 +31,18 @@ defmodule TaskTrackerWeb.TaskController do
 
   def show(conn, %{"id" => id}) do
     task = Tasks.get_task!(id)
-    render(conn, "show.html", task: task)
+    user_id = get_session(conn, :user_id)
+    time_cset = Times.change_time(%Times.Time{
+      user_id: user_id, task_id: task.id, start: NaiveDateTime.utc_now()})
+
+    render(conn, "show.html", task: task, time_cset: time_cset)
   end
 
   def edit(conn, %{"id" => id}) do
     task = Tasks.get_task!(id)
     changeset = Tasks.change_task(task)
-    render(conn, "edit.html", task: task, changeset: changeset)
+    user_ids = Users.list_user_ids()
+    render(conn, "edit.html", task: task, changeset: changeset, user_ids: user_ids)
   end
 
   def update(conn, %{"id" => id, "task" => task_params}) do

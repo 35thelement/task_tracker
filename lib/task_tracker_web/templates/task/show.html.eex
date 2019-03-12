@@ -17,7 +17,35 @@
     <%= @task.done %>
   </li>
 
+  <li>
+    <strong>User:</strong>
+    <%= @task.user.name %>
+  </li>
+
 </ul>
+
+<%= if @current_user do %>
+<div>
+  <h3>Times</h3>
+  <%= form_for @time_cset, Routes.time_path(@conn, :create),
+  [class: "form-inline"], fn f -> %>
+
+  <%= hidden_input f, :task_id, class: "" %>
+
+  <ul>
+    <li>
+      <div class="col-9">
+        <strong>Start Time</strong>
+        <%= text_input f, :start, class: "form-control" %>
+      </div>
+      <div class="col">
+        <%= submit "Finish Time Block", class: "btn btn-primary" %>
+      </div>
+    </li>
+  </ul>
+  <% end %>
+</div>
+<% end %>
 
 <span><%= link "Edit", to: Routes.task_path(@conn, :edit, @task) %></span>
 <span><%= link "Back", to: Routes.task_path(@conn, :index) %></span>
