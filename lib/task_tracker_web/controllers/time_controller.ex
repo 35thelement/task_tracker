@@ -3,8 +3,14 @@ defmodule TaskTrackerWeb.TimeController do
 
   alias TaskTracker.Times
   alias TaskTracker.Times.Time
+  alias TaskTracker.Tasks
 
   action_fallback TaskTrackerWeb.FallbackController
+
+  def index(conn, %{"task_id" => t_id}) do
+    times = Times.list_times(t_id)
+    render(conn, "index.json", times: times)
+  end
 
   def index(conn, _params) do
     times = Times.list_times()
@@ -12,11 +18,11 @@ defmodule TaskTrackerWeb.TimeController do
   end
 
   def create(conn, %{"time" => time_params}) do
+    task = Tasks.get_task!(Map.get(time_params, "task_id"))
     with {:ok, %Time{} = time} <- Times.create_time(time_params) do
       conn
-      |> put_status(:created)
-      |> put_resp_header("location", Routes.time_path(conn, :show, time))
-      |> render("show.json", time: time)
+      |> put_flash(:info, "You have started working on the task.")
+      |> redirect(to: Routes.task_path(conn, :show, task))
     end
   end
 

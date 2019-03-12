@@ -24,17 +24,20 @@
 
 </ul>
 
+<script>
+ window.time_path = "<%= Routes.time_path(@conn, :create) %>";
+</script>
+
 <%= if @current_user do %>
 <div>
-  <%= form_for @time_cset, Routes.time_path(@conn, :create),
-  [class: "form-inline"], fn f -> %>
-
-  <%= hidden_input f, :task_id, class: "" %>
-  <%= hidden_input f, :user_id, class: "" %>
-
-  <%= submit "Start Working on Task", class: "btn btn-success" %>
-  <%= submit "Finish Working on Task", class: "btn btn-danger" %>
-  <% end %>
+  <button id="start-time"
+    data-user-id="<%= @current_user.id %>"
+    data-task-id="<%= @task.id %>"
+    class="btn btn-success">Start Working on Task</button>
+  <button id="stop-time"
+    data-user-id="<%= @current_user.id %>"
+    data-task-id="<%= @task.id %>"
+    class="btn btn-danger">Stop Working on Task</button>
 </div>
 <% end %>
 
