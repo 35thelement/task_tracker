@@ -6,6 +6,8 @@ defmodule TaskTracker.Users.User do
   schema "users" do
     field :email, :string
     field :name, :string
+    belongs_to :boss, TaskTracker.Users.User
+    has_many :subordinates, TaskTracker.Users.User
     has_many :tasks, TaskTracker.Tasks.Task
     has_many :times, TaskTracker.Times.Time
 

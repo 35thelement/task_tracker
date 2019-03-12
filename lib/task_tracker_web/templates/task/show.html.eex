@@ -26,23 +26,14 @@
 
 <%= if @current_user do %>
 <div>
-  <h3>Times</h3>
   <%= form_for @time_cset, Routes.time_path(@conn, :create),
   [class: "form-inline"], fn f -> %>
 
   <%= hidden_input f, :task_id, class: "" %>
+  <%= hidden_input f, :user_id, class: "" %>
 
-  <ul>
-    <li>
-      <div class="col-9">
-        <strong>Start Time</strong>
-        <%= text_input f, :start, class: "form-control" %>
-      </div>
-      <div class="col">
-        <%= submit "Finish Time Block", class: "btn btn-primary" %>
-      </div>
-    </li>
-  </ul>
+  <%= submit "Start Working on Task", class: "btn btn-success" %>
+  <%= submit "Finish Working on Task", class: "btn btn-danger" %>
   <% end %>
 </div>
 <% end %>
