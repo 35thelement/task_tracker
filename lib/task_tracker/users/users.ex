@@ -41,12 +41,23 @@ defmodule TaskTracker.Users do
       ** (Ecto.NoResultsError)
 
   """
-  def get_user!(id), do: Repo.get!(User, id)
 
   def get_user(id) do
     Repo.one from u in User,
     where: u.id == ^id,
-    preload: [times: :task]
+    preload: [:times]
+  end
+
+  def get_user!(id) do
+    Repo.one! from u in User,
+    where: u.id == ^id,
+    preload: [:times]
+  end
+
+  def get_subordinates(id) do
+    Repo.all from u in User,
+    where: (u.id == ^id) or (u.boss_id == ^id),
+    preload: [times: :task, times: :user]
   end
 
   def get_user_by_email(email) do

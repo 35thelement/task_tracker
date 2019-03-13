@@ -18,7 +18,8 @@ defmodule TaskTracker.Times do
 
   """
   def list_times do
-    Repo.all(Time)
+    Repo.all from t in Time,
+    preload: [:task]
   end
 
   @doc """

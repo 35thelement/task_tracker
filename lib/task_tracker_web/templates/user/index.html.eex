@@ -1,5 +1,7 @@
 <h1>Listing Users</h1>
 
+<span><%= link "New User", to: Routes.user_path(@conn, :new), class: "btn btn-primary" %></span>
+
 <table class="table table-striped">
   <thead>
     <tr>
@@ -27,4 +29,30 @@
   </tbody>
 </table>
 
-<span><%= link "New User", to: Routes.user_path(@conn, :new), class: "btn btn-primary" %></span>
+<%= if @current_subordinates do %>
+<div class="row">
+  <h4>Time Blocks of You and Your Subordinates</h4>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>User</th>
+        <th>Task</th>
+        <th>Started</th>
+        <th>Stopped</th>
+      </tr>
+    </thead>
+    <tbody>
+      <%= Enum.map @current_subordinates, fn s -> %>
+      <%= Enum.map s.times, fn t -> %>
+      <tr>
+        <td><%= t.user.name %></td>
+        <td><%= t.task.name %></td>
+        <td><%= t.start %></td>
+        <td><%= t.stop %></td>
+      </tr>
+      <% end %>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+<% end %>

@@ -33,10 +33,8 @@ defmodule TaskTrackerWeb.TaskController do
   def show(conn, %{"id" => id}) do
     task = Tasks.get_task!(id)
     user_id = get_session(conn, :user_id)
-    time_cset = Times.change_time(%Times.Time{
-      user_id: user_id, task_id: task.id, start: NaiveDateTime.utc_now()})
 
-    render(conn, "show.html", task: task, time_cset: time_cset)
+    render(conn, "show.html", task: task)
   end
 
   def edit(conn, %{"id" => id}) do
