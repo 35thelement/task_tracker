@@ -3,7 +3,6 @@ defmodule TaskTrackerWeb.TaskController do
 
   alias TaskTracker.Tasks
   alias TaskTracker.Tasks.Task
-  alias TaskTracker.Times
   alias TaskTracker.Users
 
   def index(conn, _params) do
@@ -32,8 +31,6 @@ defmodule TaskTrackerWeb.TaskController do
 
   def show(conn, %{"id" => id}) do
     task = Tasks.get_task!(id)
-    user_id = get_session(conn, :user_id)
-
     render(conn, "show.html", task: task)
   end
 

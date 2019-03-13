@@ -29,7 +29,8 @@ defmodule TaskTrackerWeb.UserController do
 
   def show(conn, %{"id" => id}) do
     user = Users.get_user!(id)
-    render(conn, "show.html", user: user)
+    subordinates = Users.get_subordinates(id)
+    render(conn, "show.html", user: user, subordinates: subordinates)
   end
 
   def edit(conn, %{"id" => id}) do
@@ -59,9 +60,5 @@ defmodule TaskTrackerWeb.UserController do
     conn
     |> put_flash(:info, "User deleted successfully.")
     |> redirect(to: Routes.user_path(conn, :index))
-  end
-
-  def report(conn, _params) do
-
   end
 end
