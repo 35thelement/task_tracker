@@ -23,7 +23,7 @@
 <h3>Subordinates</h3>
 <ul>
   <%= Enum.map @subordinates, fn s -> %>
-  <%= if s.name != @user.name do %>
+  <%= if s.id != @user.id do %>
   <li><%= s.name %></li>
   <% end %>
   <% end %>
