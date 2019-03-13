@@ -12,7 +12,7 @@ mkdir -p priv/static
 
 mix deps.get
 mix compile
-(cd assets && npm install
+(cd assets && npm install)
 (cd assets && npm rebuild node-sass)
 (cd assets &&  webpack --mode production)
 mix phx.digest
