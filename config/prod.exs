@@ -14,7 +14,7 @@ config :task_tracker, TaskTrackerWeb.Endpoint,
   root: ".",
   version: Application.spec(:phoenix_distillery, :vsn),
   http: [:inet6, port: System.get_env("PORT")],
-  url: [host: "tasks1.element35.org", port: 80],
+  url: [host: "tasks2.element35.org", port: 80],
   cache_static_manifest: "priv/static/cache_manifest.json"
 
 # Do not print debug messages in production
