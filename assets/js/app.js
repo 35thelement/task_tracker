@@ -42,7 +42,7 @@ $(function () {
   $('#start-time').click((ev) => {
     let now = new Date(Date.now());
     start_time = format_date(now);
-    console.log(`Started working on task on ${start_time}`);
+    alert(`Started working on task on ${start_time}`);
   });
 
   $('#stop-time').click((ev) => {
