@@ -39,6 +39,7 @@
         <th>Task</th>
         <th>Started</th>
         <th>Stopped</th>
+        <th></th>
       </tr>
     </thead>
     <tbody>
@@ -49,6 +50,7 @@
         <td><%= t.task.name %></td>
         <td><%= t.start %></td>
         <td><%= t.stop %></td>
+        <td><%= link "Delete", to: Routes.time_path(@conn, :delete, t), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger" %>
       </tr>
       <% end %>
       <% end %>
