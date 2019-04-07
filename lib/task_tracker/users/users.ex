@@ -21,9 +21,8 @@ defmodule TaskTracker.Users do
     Repo.all(User)
   end
 
-  def list_user_ids(id) do
+  def list_user_and_subs(id) do
     Repo.all from u in User,
-    select: u.id,
     where: (u.id == ^id) or (u.boss_id == ^id)
   end
 

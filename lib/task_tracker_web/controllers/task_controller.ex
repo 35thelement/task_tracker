@@ -13,11 +13,14 @@ defmodule TaskTrackerWeb.TaskController do
   def new(conn, _params) do
     changeset = Tasks.change_task(%Task{})
     user_id = get_session(conn, :user_id)
-    user_ids = Users.list_user_ids(user_id)
-    render(conn, "new.html", changeset: changeset, user_ids: user_ids)
+    users = Users.list_user_and_subs(user_id)
+    render(conn, "new.html", changeset: changeset, users: users)
   end
 
   def create(conn, %{"task" => task_params}) do
+    user_id = get_session(conn, :user_id)
+    users = Users.list_user_and_subs(user_id)
+
     case Tasks.create_task(task_params) do
       {:ok, task} ->
         conn
@@ -25,7 +28,7 @@ defmodule TaskTrackerWeb.TaskController do
         |> redirect(to: Routes.task_path(conn, :show, task))
 
       {:error, %Ecto.Changeset{} = changeset} ->
-        render(conn, "new.html", changeset: changeset)
+        render(conn, "new.html", changeset: changeset, users: users)
     end
   end
 
@@ -38,12 +41,14 @@ defmodule TaskTrackerWeb.TaskController do
     task = Tasks.get_task!(id)
     changeset = Tasks.change_task(task)
     user_id = get_session(conn, :user_id)
-    user_ids = Users.list_user_ids(user_id)
-    render(conn, "edit.html", task: task, changeset: changeset, user_ids: user_ids)
+    users = Users.list_user_and_subs(user_id)
+    render(conn, "edit.html", task: task, changeset: changeset, users: users)
   end
 
   def update(conn, %{"id" => id, "task" => task_params}) do
     task = Tasks.get_task!(id)
+    user_id = get_session(conn, :user_id)
+    users = Users.list_user_and_subs(user_id)
 
     case Tasks.update_task(task, task_params) do
       {:ok, task} ->
@@ -52,7 +57,7 @@ defmodule TaskTrackerWeb.TaskController do
         |> redirect(to: Routes.task_path(conn, :show, task))
 
       {:error, %Ecto.Changeset{} = changeset} ->
-        render(conn, "edit.html", task: task, changeset: changeset)
+        render(conn, "edit.html", task: task, changeset: changeset, users: users)
     end
   end
 
