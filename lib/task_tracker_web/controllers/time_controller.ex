@@ -38,7 +38,8 @@ defmodule TaskTrackerWeb.TimeController do
     time = Times.get_time!(id)
 
     with {:ok, %Time{}} <- Times.delete_time(time) do
-      send_resp(conn, :no_content, "")
+      conn
+      |> redirect(to: Routes.user_path(conn, :index))
     end
   end
 end
