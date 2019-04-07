@@ -13,6 +13,10 @@
   <%= text_input f, :email, class: "form-control"%>
   <%= error_tag f, :email %>
 
+  <%= label f, :boss_id %>
+  <%= select f, :boss_id, Enum.concat([{"No Boss", nil}], Enum.map(@users, &{&1.name, &1.id})), class: "form-control" %>
+  <%= error_tag f, :boss_id %>
+
   <div>
     <%= submit "Register", class: "btn btn-primary" %>
   </div>

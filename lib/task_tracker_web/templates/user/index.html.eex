@@ -8,7 +8,6 @@
       <th>Name</th>
       <th>Email</th>
       <th>ID</th>
-
       <th></th>
     </tr>
   </thead>
@@ -18,7 +17,6 @@
       <td><%= user.name %></td>
       <td><%= user.email %></td>
       <td><%= user.id %><td>
-
       <td>
         <%= link "Show", to: Routes.user_path(@conn, :show, user), class: "btn btn-secondary" %>
         <%= link "Edit", to: Routes.user_path(@conn, :edit, user), class: "btn btn-secondary" %>
@@ -39,7 +37,6 @@
         <th>Task</th>
         <th>Started</th>
         <th>Stopped</th>
-        <th></th>
       </tr>
     </thead>
     <tbody>
