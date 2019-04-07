@@ -44,13 +44,13 @@ defmodule TaskTracker.Users do
   def get_user(id) do
     Repo.one from u in User,
     where: u.id == ^id,
-    preload: [:times]
+    preload: [:times, :tasks]
   end
 
   def get_user!(id) do
     Repo.one! from u in User,
     where: u.id == ^id,
-    preload: [:times]
+    preload: [:times, :tasks]
   end
 
   def get_subordinates(id) do
