@@ -24,5 +24,8 @@ I created a function that queried the user table, given a user's id, that loads 
 ### Showing a User's Subordinates
 I created another function that queried the user table, given a user's id, that loads the user and all the user's direct subordinates. I then used this function when showing a user by calling it on  the id of the user that is going to be shown. This list of subordinates is then filtered to remove the original user.
 
+## Assigning a Subordinate to a User
+I did this through editing a user's current boss when editing a user. There is a dropdown populated with all other users wherein a user can choose any user's boss.
+
 ### Creating a Time Block
 When a user looks at a task, they can see two buttons: one to start working, and one to stop. When they click the start button, they store a local page variable as the starting time, which is set to the time they clicked the button. When a user clicks the stop button, an AJAX function sends a new time block to be added, with a start time equal to the previously stored start time and a stop time set to when  they clicked the stop button. When they press the stop button without pressing the start button, nothing happens.

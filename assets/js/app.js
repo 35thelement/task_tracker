@@ -60,15 +60,13 @@ $(function () {
       },
     });
 
-    console.log(text);
-
     $.ajax(time_path, {
       method: "post",
       dataType: "json",
       contentType: "application/json; charset=UTF-8",
       data: text,
-      success: (response) => {
-        console.log(response);
+      complete: (response) => {
+        alert("Added time block!");
       }
     });
   });
